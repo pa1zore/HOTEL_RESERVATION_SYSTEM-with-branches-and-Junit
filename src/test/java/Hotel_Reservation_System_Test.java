@@ -18,7 +18,7 @@ public class Hotel_Reservation_System_Test {
         Assertions.assertEquals(actualName,name);
         Assertions.assertEquals(actualPrice,price);
     }
-    @Test
+    @Test 
     void should_return_chepeast_hotel_name_and_price()
     {
         Hotel h1=  new Hotel("Lakewood",110);
