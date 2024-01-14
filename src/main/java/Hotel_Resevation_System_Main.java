@@ -28,11 +28,11 @@ class Hotel
 
 }
 public class Hotel_Resevation_System_Main {
-    static ArrayList<Hotel> hotel1 = new ArrayList<>();
+    static ArrayList<Hotel>  hotel = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         Hotel h=  new Hotel("Lakewood",110);
-        hotel1.add(h);
+        hotel.add(h);
         System.out.println(h);
     }
 

@@ -11,9 +11,9 @@ public class Hotel_Reservation_System_Test {
         String name = "akash";
         int price=110;
         //when
-        Hotel hotel1 = new Hotel(name,price);
-        String actualName=hotel1.getName();
-        int  actualPrice = hotel1.getRateForRegularCustomer();
+        Hotel hotel = new Hotel(name,price);
+        String actualName=hotel.getName();
+        int  actualPrice = hotel.getRateForRegularCustomer();
         //then
         Assertions.assertEquals(actualName,name);
         Assertions.assertEquals(actualPrice,price);
