@@ -39,6 +39,17 @@ class Hotel {
     public int getWeekendRate() {
         return weekendRate;
     }
+    public int calculateTotalCostForDateRange(int[] dateRange) {
+        int totalCost = 0;
+        for (int date : dateRange) {
+            if (date >= 1 && date <= 5) {
+                totalCost += weekdayRate;
+            } else {
+                totalCost += weekendRate;
+            }
+        }
+        return totalCost;
+    }
 
     public String toString() {
         return "Hotel name is " + name + " rate for regular customer " + rateForRegularCustomer + "$";
@@ -76,6 +87,12 @@ public class Hotel_Resevation_System_Main {
         Hotel h = cheapestHotel(dcount);
         System.out.println("Cheapest hotel is");
         System.out.println("Hotel name: " + h.getName() + " hotel price: " + h.getRateForRegularCustomer());
+
+        int[] dateRange = { 11, 12 }; // You can modify this array based on user input or other requirements
+
+        Hotel cheapestHotel = findCheapestHotelForDateRange(dateRange);
+        System.out.println("Cheapest hotels for the given date range:");
+        System.out.println("Hotel name: " + cheapestHotel.getName() + ", Total Rate: " + cheapestHotel.calculateTotalCostForDateRange(dateRange));
     }
 
     public static Hotel cheapestHotel(int count) {
@@ -96,5 +113,20 @@ public class Hotel_Resevation_System_Main {
 
         temp.setRateForRegularCustomer(sum);
         return temp;
+    }
+    public static Hotel findCheapestHotelForDateRange(int[] dateRange) {
+        Hotel cheapestHotel = null;
+        int minCost = Integer.MAX_VALUE;
+
+        for (Hotel h : hotel) {
+            int totalCost = h.calculateTotalCostForDateRange(dateRange);
+
+            if (totalCost < minCost) {
+                minCost = totalCost;
+                cheapestHotel = h;
+            }
+        }
+
+        return cheapestHotel;
     }
 }
