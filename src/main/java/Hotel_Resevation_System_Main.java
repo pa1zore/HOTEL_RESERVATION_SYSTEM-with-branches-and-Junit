@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 class Hotel {
     private String name;
     private int rateForRegularCustomer;
     private int weekdayRate;
     private int weekendRate;
+    private int rating; // Added property for hotel rating
 
     public Hotel() {
     }
@@ -39,6 +41,15 @@ class Hotel {
     public int getWeekendRate() {
         return weekendRate;
     }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
     public int calculateTotalCostForDateRange(int[] dateRange) {
         int totalCost = 0;
         for (int date : dateRange) {
@@ -52,7 +63,7 @@ class Hotel {
     }
 
     public String toString() {
-        return "Hotel name is " + name + " rate for regular customer " + rateForRegularCustomer + "$";
+        return "Hotel name is " + name + ", rating is " + rating + ", rate for regular customer " + rateForRegularCustomer + "$";
     }
 }
 
@@ -63,12 +74,15 @@ public class Hotel_Resevation_System_Main {
     public static void main(String[] args) {
         Hotel h1 = new Hotel("Lakewood", 110);
         h1.setWeekdayAndWeekendRates(110, 90);
+        h1.setRating(3); // Set rating for Lakewood
 
-        Hotel h2 = new Hotel("Bredgewood", 160);
+        Hotel h2 = new Hotel("Bridgewood", 160);
         h2.setWeekdayAndWeekendRates(150, 50);
+        h2.setRating(4); // Set rating for Bridgewood
 
         Hotel h3 = new Hotel("Ringwood", 220);
         h3.setWeekdayAndWeekendRates(220, 150);
+        h3.setRating(5); // Set rating for Ringwood
 
         hotel.add(h1);
         hotel.add(h2);
