@@ -62,5 +62,39 @@ public class Hotel_Reservation_System_Test {
         Assertions.assertEquals("Lakewood", cheapestHotel.getName());
         Assertions.assertEquals(200, cheapestHotel.calculateTotalCostForDateRange(dateRange));
     }
+    @Test
+    void testCheapestBestRatedHotelForDateRange() {
+        // Create a sample hotel list
+        ArrayList<Hotel> hotelList = new ArrayList<>();
+        Hotel h1 = new Hotel("Lakewood", 110);
+        h1.setWeekdayAndWeekendRates(110, 90);
+        h1.setRating(3);
+
+        Hotel h2 = new Hotel("Bridgewood", 160);
+        h2.setWeekdayAndWeekendRates(150, 50);
+        h2.setRating(4);
+
+        Hotel h3 = new Hotel("Ringwood", 220);
+        h3.setWeekdayAndWeekendRates(220, 150);
+        h3.setRating(5);
+
+        hotelList.add(h1);
+        hotelList.add(h2);
+        hotelList.add(h3);
+
+        // Set the hotel list in the main class
+        Hotel_Resevation_System_Main.hotel = hotelList;
+
+        // Define a date range for testing
+        int[] dateRange = {11, 12};
+
+        // Call the function to get the cheapest and best-rated hotel
+        Hotel cheapestBestRatedHotel = Hotel_Resevation_System_Main.findCheapestBestRatedHotelForDateRange(dateRange);
+
+        // Perform assertions
+        Assertions.assertEquals("Bridgewood", cheapestBestRatedHotel.getName());
+        Assertions.assertEquals(200, cheapestBestRatedHotel.calculateTotalCostForDateRange(dateRange));
+        Assertions.assertEquals(4, cheapestBestRatedHotel.getRating());
+    }
 
 }

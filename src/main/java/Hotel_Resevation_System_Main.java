@@ -107,6 +107,12 @@ public class Hotel_Resevation_System_Main {
         Hotel cheapestHotel = findCheapestHotelForDateRange(dateRange);
         System.out.println("Cheapest hotels for the given date range:");
         System.out.println("Hotel name: " + cheapestHotel.getName() + ", Total Rate: " + cheapestHotel.calculateTotalCostForDateRange(dateRange));
+
+        Hotel cheapestBestRatedHotel = findCheapestBestRatedHotelForDateRange(dateRange);
+        System.out.println("Cheapest and Best Rated hotel for the given date range:");
+        System.out.println("Hotel name: " + cheapestBestRatedHotel.getName() + ", Rating: "
+                + cheapestBestRatedHotel.getRating() + " and Total Rates: "
+                + cheapestBestRatedHotel.calculateTotalCostForDateRange(dateRange));
     }
 
     public static Hotel cheapestHotel(int count) {
@@ -120,7 +126,7 @@ public class Hotel_Resevation_System_Main {
 
         int i = 0;
         int sum = 0;
-        while (i < count) {
+        while (i <= count) {
             sum += temp.getRateForRegularCustomer();
             i++;
         }
@@ -135,12 +141,27 @@ public class Hotel_Resevation_System_Main {
         for (Hotel h : hotel) {
             int totalCost = h.calculateTotalCostForDateRange(dateRange);
 
-            if (totalCost < minCost) {
+            if (totalCost <= minCost) {
                 minCost = totalCost;
                 cheapestHotel = h;
             }
         }
 
         return cheapestHotel;
+    }
+    public static Hotel findCheapestBestRatedHotelForDateRange(int[] dateRange) {
+        Hotel cheapestBestRatedHotel = null;
+        int minCost = Integer.MAX_VALUE;
+
+        for (Hotel h : hotel) {
+            int totalCost = h.calculateTotalCostForDateRange(dateRange);
+
+            if (totalCost <= minCost || (totalCost == minCost && h.getRating() > cheapestBestRatedHotel.getRating())) {
+                minCost = totalCost;
+                cheapestBestRatedHotel = h;
+            }
+        }
+
+        return cheapestBestRatedHotel;
     }
 }
